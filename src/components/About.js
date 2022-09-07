@@ -3,11 +3,6 @@ import React from 'react'
 
 export default function About(props) {
 
-    // const [myStyle, setMyStyle] = useState({
-    //     color: 'black',
-    //     backgroundColor: 'white'
-    // })
-
     let myStyle = {
         color: props.mode === 'dark'?'white':'black',
         backgroundColor: props.mode === 'dark'?'rgb(45 47 50)':'white'
@@ -57,9 +52,6 @@ export default function About(props) {
                         </div>
                     </div>
                 </div>
-                {/* <div className="container my-3">
-                    <button type="button" onClick={toggleStyle} className="btn btn-primary">{btnText}</button>
-                </div> */}
             </div>
         </>
     )

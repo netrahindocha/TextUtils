@@ -4,21 +4,18 @@ import React from 'react'
 export default function TextForm(props) {
     const [text, setText] = useState("Enter text here");
     const handleUpClick = ()=>{
-        console.log("Uppercase was clicked");
         let newText = text.toUpperCase();
         setText(newText);
         props.showAlert("Converted to UpperCase!", "success");
     }
     const handleLoClick = ()=>{
-        console.log("Lowercase was clicked");
         let newText = text.toLowerCase();
         setText(newText);
         props.showAlert("Converted to LowerCase!", "success");
     }
     
     const handleAa = ()=>{
-        let words = text.split(" ");
-        // console.log("Aa was clicked");
+        let words = text.split(/\s+/);
         let joinedWords = [];
         let capWord;
         
@@ -28,32 +25,26 @@ export default function TextForm(props) {
                 joinedWords += capWord + ' '; 
             }
         });
-        // console.log(joinedWords);
         setText(joinedWords);
         props.showAlert("Converted first letter of each word to Capital!", "success");
     }
     const handleReset = ()=>{
-        console.log("Reset was clicked");
         setText("");
         props.showAlert("Text Cleared!", "success");
     }
     const handleCopy = ()=>{
-        console.log("Copy was clicked");
         navigator.clipboard.writeText(text);
         props.showAlert("Copied to Clipboard!", "success");
     }
     const handleOnChange = (e)=>{
-        // console.log("On change");
         setText(e.target.value);
     }
     const handleExtraSpaces = ()=>{
         let words = text.split(' ');
         let joinedWords = '';
-        // console.log(words);
         words.forEach((elem)=>{
             if(elem[0] !== undefined){
                 joinedWords += elem + " ";
-                // console.log(joinedWords);
             }
         })
         setText(joinedWords);
@@ -82,9 +73,9 @@ export default function TextForm(props) {
         <div className="container my-3" style={{color: props.mode === 'dark'? 'white' : 'black'}}>
             <h2>Your text summary</h2>
             {/* <p>{text.split(" ").includes("")? text.split(" ").length - 1 : text.split(" ").length} words and {text.length} characters</p> */}
-            <p>{text.split(" ").filter((elem) => {return elem.length !== 0}).length} words and {text.length} characters</p>
+            <p>{text.split(/\s+/).filter((elem) => {return elem.length !== 0}).length} words and {text.length} characters</p>
             <p></p>
-            <p>{0.008 * text.split(" ").filter((elem) => {return elem.length !== 0}).length} Minutes read</p>
+            <p>{0.008 * text.split(/\s+/).filter((elem) => {return elem.length !== 0}).length} Minutes read</p>
             <h2>Preview</h2>
             <p>{text.length>0? text : "Nothing to preview!"}</p>
         </div>

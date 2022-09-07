@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 import About from './components/About';
-// import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
   Routes,
@@ -33,14 +32,14 @@ function App() {
       // setModeTxt('light')
       document.body.style.backgroundColor = '#41464b'
       showAlert("Dark mode has been enabled", "success");
-      document.title = "TextUtils - Dark Mode"
+      // document.title = "TextUtils - Dark Mode"
     }
     else {
       setMode('light')
       // setModeTxt('dark')
       document.body.style.backgroundColor = 'white'
       showAlert("Light mode has been enabled", "success");
-      document.title = "TextUtils - Light Mode"
+      // document.title = "TextUtils - Light Mode"
     }
   }
 
@@ -56,30 +55,16 @@ function App() {
     }, 1500);
   }
 
-  // const root = ReactDOM.createRoot(
-  //   document.getElementById("root")
-  // );
-
   return (
     <>
       <BrowserRouter>
       <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <Routes>
-        {/* <Route path='/' element={<Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} />} /> */}
-        <Route path='/' element={<TextForm heading="Try TextUtils - word counter, character counter, remove extra spaces" mode={mode} alert={alert} showAlert={showAlert} />} />
-        {/* <TextForm heading="Enter the text to analyze below" mode={mode} alert={alert} showAlert={showAlert} /> */}
+        <Route path='/' element={<TextForm heading="Try Textutils - Word Counter, Character Counter, Remove Extra Spaces " mode={mode} alert={alert} showAlert={showAlert} />} />
         <Route path='/About' element={<About mode={mode}/>} />
-        {/* <Route path='/Alert' element={<Alert alert={alert} />} /> */}
       </Routes>
       </BrowserRouter>
-      {/* <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} modeTxt = {modeTxt}/> */}
-      {/* <Navbar title="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} /> */}
-      {/* <Alert alert={alert} /> */}
-      {/* <div className="container my-3"> */}
-        {/* <TextForm heading="Enter the text to analyze below" mode={mode} alert={alert} showAlert={showAlert} /> */}
-        {/* <About /> */}
-      {/* </div> */}
     </>
   );
 }
