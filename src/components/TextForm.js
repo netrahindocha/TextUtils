@@ -69,20 +69,24 @@ export default function TextForm(props) {
                 <h1>{props.heading}</h1>
                 <div className="form-group">
                     <textarea className="form-control" onChange={handleOnChange} value={text} id="myBox" rows="8" style={{backgroundColor: props.mode === 'dark'? '#141619' : 'white', color: props.mode === 'dark'? 'white' : 'black'}}></textarea>
-                    <button className="btn btn-primary my-3 mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-                    <button className="btn btn-primary my-3 mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
-                    <button className="btn btn-primary my-3 mx-1" onClick={handleAa}>Aa</button>
-                    <button className="btn btn-primary my-3 mx-1" onClick={handleReset}>Clear</button>
-                    <button className="btn btn-primary my-3 mx-1" onClick={handleCopy}>Copy</button>
-                    <button className="btn btn-primary my-3 mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                    <div className="buttons my-2 mx-2">
+                    <button disabled={text.length===0} className="btn btn-primary my-1 mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-1 mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-1 mx-1" onClick={handleAa}>Aa</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-1 mx-1" onClick={handleReset}>Clear</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-1 mx-1" onClick={handleCopy}>Copy</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-1 mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                    </div>
                 </div>
         </div>
         <div className="container my-3" style={{color: props.mode === 'dark'? 'white' : 'black'}}>
             <h2>Your text summary</h2>
-            <p>{text.split(" ").includes("")? text.split(" ").length - 1 : text.split(" ").length} words and {text.length} characters</p>
-            <p>{0.008 * text.split(" ").length} Minutes read</p>
+            {/* <p>{text.split(" ").includes("")? text.split(" ").length - 1 : text.split(" ").length} words and {text.length} characters</p> */}
+            <p>{text.split(" ").filter((elem) => {return elem.length !== 0}).length} words and {text.length} characters</p>
+            <p></p>
+            <p>{0.008 * text.split(" ").filter((elem) => {return elem.length !== 0}).length} Minutes read</p>
             <h2>Preview</h2>
-            <p>{text.length>0? text : "Enter something in the textbox to preview it here"}</p>
+            <p>{text.length>0? text : "Nothing to preview!"}</p>
         </div>
         </>
     )
